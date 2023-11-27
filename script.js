@@ -4,6 +4,9 @@ const imagesWrapper=document.querySelector(".images");
 const showMore=document.querySelector(".load-more");
 const searchInput=document.querySelector(".search-box input");
 const searchIcon=document.getElementById("searchbtn");
+const lightBox=document.querySelector(".lightbox");
+const closeBtn=document.getElementById("closeBtn");
+const downloadBtn=document.getElementById("downloadbtn");
 
 let searchTerm=null;
 const perPage=15;
@@ -17,9 +20,19 @@ const downloadImg=(imgURL)=>{
  }).catch(()=>alert("Failed too download image!"))
 
 }
+
+const showLightbox=(name,img)=>{
+    lightBox.querySelector("img").src=img;
+    lightBox.querySelector("span").innerText=name;
+    lightBox.classList.add("show");
+    downloadBtn.setAttribute("data-img",img);
+}
+const hideLightBox=()=>{
+    lightBox.classList.remove("show");
+}
 const generateHtml=(images)=>{
     imagesWrapper.innerHTML+=images.map(img=>
-        `<li class="card">
+        `<li class="card" onclick="showLightbox('${img.photographer}','${img.src.large2x}')">
             <img src="${img.src.large2x}" alt="img">
             <div class="details">
                 <div class="photographer">
@@ -28,7 +41,7 @@ const generateHtml=(images)=>{
                     </span>
                     <span>${img.photographer}</span>
                 </div>
-                <button onclick="downloadImg('${img.src.large2x}')">
+                <button onclick="downloadImg('${img.src.large2x}');event.stopPropagation();">
                     <span class="material-symbols-outlined">
                         download
                     </span>
@@ -70,6 +83,9 @@ searchIcon.addEventListener("click",()=>{
         imagesWrapper.innerHTML="";
         getImages(`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`);
 })
+
 getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
 showMore.addEventListener("click",loadMoreImages);
 searchInput.addEventListener("keyup",loadSearchImages);
+closeBtn.addEventListener("click",hideLightBox);
+downloadBtn.addEventListener("click",(e)=>downloadImg(e.target.dataset.img));
