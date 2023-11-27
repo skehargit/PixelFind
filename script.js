@@ -3,6 +3,7 @@ const apiKey="FwxC0sFaDQbsYGOjPKlrG3ffqWyeLDrHHWKkBp1fvlGX2wuEsLsRv1MN";
 const imagesWrapper=document.querySelector(".images");
 const showMore=document.querySelector(".load-more");
 const searchInput=document.querySelector(".search-box input");
+const searchIcon=document.getElementById("searchbtn");
 
 let searchTerm=null;
 const perPage=15;
@@ -46,7 +47,7 @@ const getImages=(apiurl)=>{
         generateHtml(data.photos);
         showMore.innerHTML="Show More";
         showMore.classList.remove("disabled");
-    }).catch(()=>alert("failed to load images!"));
+    }).catch(()=>alert("failed to load images! Chek your Internet!"));
 }
 const loadMoreImages=()=>{
     currentPage++;
@@ -56,15 +57,19 @@ const loadMoreImages=()=>{
 }
 const loadSearchImages=(e)=>{
     if(e.target.value==="")return searchTerm=null;
- if(e.key==="Enter"){
-    // console.log("Enter key pressed");
-    currentPage=1;
-    searchTerm=e.target.value;
-    // console.log(searchTerm)
-    imagesWrapper.innerHTML="";
-    getImages(`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`);
- }
+    if(e.key==="Enter"){
+        currentPage=1;
+        searchTerm=e.target.value;
+        imagesWrapper.innerHTML="";
+        getImages(`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`);
+    }
 }
+searchIcon.addEventListener("click",()=>{
+        currentPage=1;
+        searchTerm=searchInput.value;
+        imagesWrapper.innerHTML="";
+        getImages(`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`);
+})
 getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
 showMore.addEventListener("click",loadMoreImages);
 searchInput.addEventListener("keyup",loadSearchImages);
