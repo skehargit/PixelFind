@@ -30,11 +30,23 @@ color: #fff;
 
 }
 .search-box span{
+    z-index: 1;
+    position: relative;
     color: white;
     background: rgb(59, 58, 58);
     padding: 5px;
     border-radius: 100px;
     cursor: pointer;
+    animation-name: leftToRight;
+    animation-duration: 2s;
+}
+@keyframes leftToRight{
+    0%{
+        right: 93%;
+    }
+    100%{
+        right: 0;
+    }
 }
 .search-box img{
     width: 20px;
@@ -164,7 +176,8 @@ color: #fff;
 }
 .wrapper header .photographer span{
     font-size: 1rem;
-    font-weight: bold;
+    /* font-weight: bold; */
+    font-family: sans-serif;
 }
 .wrapper header .buttons span{
     background-color: rgba(0, 0, 0, 0.648);
@@ -181,6 +194,41 @@ color: #fff;
 }
 .preview-img img{
     width: 100%;
+}
+.gototop{
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    position: fixed;
+    background: black;
+    display: inline-block;
+    border-radius: 100px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    animation-name: bottomtotop;
+    animation-duration: .5s;
+}
+@keyframes bottomtotop{
+    0%{
+        bottom: -100px;
+    }
+    100%{
+        bottom: 10px;
+    }
+}
+.gototop span{
+    border: 2px solid white;
+    border-radius: 50px;
+    color: white;
+}
+.gototop a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
 }
 @media (max-width:400px) {
     .search{
