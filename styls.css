@@ -3,12 +3,11 @@
     padding: 0;
     font-family: sans-serif;
     -webkit-tap-highlight-color: rgba(0,0,0,0)!important;
-    /* -webkit-focus-ring-color:rgba(255,255,255,0);
+    -webkit-focus-ring-color:rgba(255,255,255,0);
     outline: none !important;
-    -webkit-tap-highlight-color:transparent; */
 }
-body{
-    /* background-color: black; */
+.dark-mode{
+    background-color: rgb(16, 16, 16);
 }
 .search{
     height: 10vh;
@@ -37,16 +36,18 @@ color: #fff;
     z-index: 1;
     position: relative;
     color: white;
-    background: rgb(59, 58, 58);
+    background: rgb(16, 16, 16);
     padding: 5px;
     border-radius: 100px;
     cursor: pointer;
     animation-name: leftToRight;
     animation-duration: 2s;
+    /* animation-delay: 1s; */
 }
 @keyframes leftToRight{
     0%{
-        right: 93%;
+        right: 4%;
+        padding-right:94%;
     }
     100%{
         right: 0;
@@ -56,9 +57,20 @@ color: #fff;
     width: 20px;
 }
 .search h1{
+    position: relative;
     text-align: center;
     font-size: 2rem;
     font-weight: 600;
+    animation-name: h1animate;
+    animation-duration: 2s;
+}
+@keyframes h1animate{
+ 0%{
+    left: -40%;
+ }
+ 100%{
+    left: 0%;
+ }
 }
 .search .search-box{
     width: 90%;
@@ -202,7 +214,7 @@ color: #fff;
     right:15px;
     bottom: 20px;
     position: fixed;
-    background: black;
+    background: rgb(16, 16, 16);
     display: inline-block;
     border-radius: 100px;
     padding: 10px;
