@@ -167,7 +167,6 @@ color: #fff;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
 }
 .wrapper header{
     display: flex;
@@ -176,7 +175,6 @@ color: #fff;
 }
 .wrapper header .photographer span{
     font-size: 1rem;
-    /* font-weight: bold; */
     font-family: sans-serif;
 }
 .wrapper header .buttons span{
@@ -197,13 +195,13 @@ color: #fff;
 }
 .gototop{
     position: absolute;
-    right: 10px;
-    bottom: 10px;
+    right:15px;
+    bottom: 20px;
     position: fixed;
     background: black;
     display: inline-block;
     border-radius: 100px;
-    padding: 5px;
+    padding: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -217,11 +215,12 @@ color: #fff;
         bottom: -100px;
     }
     100%{
-        bottom: 10px;
+        bottom: 20px;
     }
 }
 .gototop span{
     border: 2px solid white;
+    font-size: 2rem;
     border-radius: 50px;
     color: white;
 }
