@@ -65,9 +65,11 @@ const getImages=(apiurl)=>{
 const loadMoreImages=()=>{
     currentPage++;
     let apiUrl=`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`
-    apiUrl=searchTerm?`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`:apiUrl;
+    apiUrl==searchTerm?`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`:apiUrl;
     getImages(apiUrl);
+
 }
+
 const loadSearchImages=(e)=>{
     if(e.target.value==="")return searchTerm=null;
     if(e.key==="Enter"){
@@ -81,7 +83,13 @@ searchIcon.addEventListener("click",()=>{
         currentPage=1;
         searchTerm=searchInput.value;
         imagesWrapper.innerHTML="";
-        getImages(`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`);
+        if(searchTerm==""){
+            alert("Enter somting to search...");
+            getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
+        }else{
+            getImages(`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`);
+        }
+        
 })
 
 getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
