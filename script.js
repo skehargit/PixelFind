@@ -9,7 +9,7 @@ const closeBtn=document.getElementById("closeBtn");
 const downloadBtn=document.getElementById("downloadbtn");
 
 let searchTerm=null;
-const perPage=15;
+const perPage=80;
 let currentPage=1;
 const downloadImg=(imgURL)=>{
  fetch(imgURL).then(res=>res.blob()).then(file=>{
@@ -31,6 +31,7 @@ const hideLightBox=()=>{
     lightBox.classList.remove("show");
 }
 const generateHtml=(images)=>{
+    console.log(images.length);
     imagesWrapper.innerHTML+=images.map(img=>
         `<li class="card" onclick="showLightbox('${img.photographer}','${img.src.large2x}')">
             <img src="${img.src.large2x}" alt="img">
