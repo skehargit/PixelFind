@@ -1,7 +1,7 @@
 // FwxC0sFaDQbsYGOjPKlrG3ffqWyeLDrHHWKkBp1fvlGX2wuEsLsRv1MN
 const apiKey="FwxC0sFaDQbsYGOjPKlrG3ffqWyeLDrHHWKkBp1fvlGX2wuEsLsRv1MN";
 const imagesWrapper=document.querySelector(".images");
-const showMore=document.querySelector(".load-more");
+const showMore=document.getElementById("load-more");
 const searchInput=document.querySelector(".search-box input");
 const searchIcon=document.getElementById("searchbtn");
 const lightBox=document.querySelector(".lightbox");
@@ -64,9 +64,11 @@ const getImages=(apiurl)=>{
 }
 const loadMoreImages=()=>{
     currentPage++;
-    let apiUrl=`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`
-    apiUrl==searchTerm?`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`:apiUrl;
-    getImages(apiUrl);
+    if(searchTerm==null){
+        getImages(`https://api.pexels.com/v1/curated?page=${currentPage}&per_page=${perPage}`);
+    }else{
+        getImages(`https://api.pexels.com/v1/search?query=${searchTerm}&page=${currentPage}&per_page=${perPage}`)
+    }
 
 }
 
